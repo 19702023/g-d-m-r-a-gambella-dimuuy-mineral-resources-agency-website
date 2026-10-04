@@ -1,0 +1,11 @@
+type FileReference = 
+ record {
+   hash: text;
+   path: text;
+ };
+service : {
+  dropFileReference: (path: text) -> ();
+  getFileReference: (path: text) -> (FileReference) query;
+  listFileReferences: () -> (vec FileReference) query;
+  registerFileReference: (path: text, hash: text) -> ();
+}

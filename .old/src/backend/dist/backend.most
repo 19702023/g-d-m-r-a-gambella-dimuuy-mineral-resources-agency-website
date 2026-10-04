@@ -1,0 +1,51 @@
+// Version: 4.0.0
+type AccessControlState__201339279 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__230067015<Principal, UserRole__91647283>
+  };
+type Data__44217153<K, V> = {var count : Nat__227979830; kvs : [var ?(K, V)]};
+type FileReference__107218502 = {hash : Text; path : Text};
+type FileReference__615446570 = FileReference__107218502;
+type FileReference__934444783 = {hash : Text; path : Text};
+type Internal__283199666<K, V> =
+  {children : [var ?Node__204828119<K, V>]; data : Data__44217153<K, V>};
+type Leaf__598469445<K, V> = {data : Data__44217153<K, V>};
+type Map__230067015<K, V> = Map__405889023<K, V>;
+type Map__334413012<K, V> = {root : Tree__4145630<K, V>; size : Nat};
+type Map__405889023<K, V> = Map__603270868<K, V>;
+type Map__603270868<K, V> =
+  {var root : Node__204828119<K, V>; var size : Nat__227979830};
+type Nat__227979830 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NewActor__179615843 =
+  {
+    accessControlState : AccessControlState__201339279;
+    documentRegistry : NewRegistry__792837099
+  };
+type NewRegistry__792837099 =
+  {var references : Map__230067015<Text, FileReference__934444783>};
+type Node__204828119<K, V> =
+  {#internal : Internal__283199666<K, V>; #leaf : Leaf__598469445<K, V>};
+type OldActor__581504678 = {registry : OldRegistry__403733311};
+type OldRegistry__403733311 =
+  {var references : Map__334413012<Text, FileReference__934444783>};
+type Tree__4145630<K, V> =
+  {
+    #black : (Tree__4145630<K, V>, K, V, Tree__4145630<K, V>);
+    #leaf;
+    #red : (Tree__4145630<K, V>, K, V, Tree__4145630<K, V>)
+  };
+type UserRole__91647283 = {#admin; #guest; #user};
+{
+  "20261004000000" : (old : OldActor__581504678) -> NewActor__179615843
+}
+actor  {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__230067015<Principal, UserRole__91647283>
+    };
+  stable documentRegistry :
+    {var references : Map__230067015<Text, FileReference__615446570>}
+};
